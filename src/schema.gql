@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CategoryCount {
+  count: Int!
+  name: String!
+}
+
+input CreateProductInput {
+  category: String
+  description: String
+  name: String!
+  price: Float! = 0
+  quantity: Int! = 0
+  sku: String
+}
+
+type DashboardStats {
+  categories: [CategoryCount!]!
+  total: Int!
+  totalValue: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(id: String!, input: UpdateProductInput!): Product!
+}
+
+type Product {
+  category: String
+  createdAt: DateTime!
+  description: String
+  id: String!
+  name: String!
+  price: Float!
+  quantity: Int!
+  sku: String
+  updatedAt: DateTime!
+}
+
+type Query {
+  dashboardStats: DashboardStats!
+  product(id: String!): Product
+  products: [Product!]!
+}
+
+input UpdateProductInput {
+  category: String
+  description: String
+  name: String
+  price: Float = 0
+  quantity: Int = 0
+  sku: String
+}
